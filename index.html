@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>ZŁOM-MET — System skupu</title>
+<meta name="description" content="System do prowadzenia skupu złomu: przyjęcia, cennik, magazyn, wywozy." />
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#c8743f" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="ZŁOM-MET" />
+<style>
+  html, body { margin: 0; padding: 0; background: #f4f5f3; -webkit-tap-highlight-color: transparent; }
+  * { -webkit-text-size-adjust: 100%; }
+  #boot { min-height: 100vh; display: grid; place-items: center; font-family: system-ui, -apple-system, sans-serif; color: #6b7280; }
+  #boot .logo { width: 64px; height: 64px; border-radius: 18px; background: linear-gradient(135deg,#c8743f,#a85829); display: grid; place-items: center; margin-bottom: 14px; }
+  #boot .logo span { color: #fff; font-weight: 800; font-size: 30px; }
+  @keyframes pulse { 0%,100%{opacity:.55} 50%{opacity:1} }
+  #boot .t { animation: pulse 1.2s ease-in-out infinite; font-size: 14px; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.460.0?external=react,react-dom"
+  }
+}
+</script>
+</head>
+<body>
+<div id="root"><div id="boot"><div style="text-align:center"><div class="logo"><span>Z</span></div><div class="t">Ładowanie systemu…</div></div></div></div>
+<script type="module">
+  import React from "react";
+  import { createRoot } from "react-dom/client";
+  import App from "./app.js";
+  const root = createRoot(document.getElementById("root"));
+  root.render(React.createElement(App));
+</script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function (e) { console.warn("SW:", e); });
+    });
+  }
+</script>
+</body>
+</html>
